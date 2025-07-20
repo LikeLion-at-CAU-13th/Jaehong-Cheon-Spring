@@ -21,7 +21,7 @@ public class Coupon extends BaseTimeEntity {
     private Boolean isUsed; // 쿠폰 사용 여부
 
     @OneToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id") // 관계의 주인
     private Orders orders;
 
 }
