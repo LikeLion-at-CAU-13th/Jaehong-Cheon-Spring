@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class ProductOrders {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // pk자동생성
     private Long id;
 
     @ManyToOne
