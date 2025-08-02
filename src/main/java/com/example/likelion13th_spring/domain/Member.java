@@ -24,21 +24,19 @@ public class Member {
     private Integer age;
 
     @Enumerated(EnumType.STRING)
-    private Role role; // 판매자면 SELLER, 구매자면 BUYER
+    private Role role;
 
-    private Boolean isAdmin; // 관리자 계정인지
+    private Boolean isAdmin;
 
-    private Integer deposit; // 현재 계좌 잔액
+    private Integer deposit;
 
-    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL) // 영속성 전이 멤버를 영속화할 때 구매한 물건들도 같이 영속화
-    private Set<Product> products = new HashSet<>(); // 연관관계 주인 아님!!
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
+    private Set<Product> products = new HashSet<>();
 
-    // 계좌 잔액 충전하기
     public void chargeDeposit(int money){
         this.deposit += money;
     }
 
-    //계좌 잔액 사용하기
     public void useDeposit(int money){
         this.deposit -= money;
     }
