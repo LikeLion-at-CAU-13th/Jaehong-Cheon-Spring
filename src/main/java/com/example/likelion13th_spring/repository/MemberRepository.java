@@ -15,4 +15,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByEmail(String email);
     Page<Member> findByAgeGreaterThan(Integer age, Pageable pageable);
     Page<Member> findByNameStartingWith(String firstName, Pageable pageable);
+
 }
