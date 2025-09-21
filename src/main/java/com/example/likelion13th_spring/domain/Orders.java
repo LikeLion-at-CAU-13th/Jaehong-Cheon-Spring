@@ -3,15 +3,13 @@ package com.example.likelion13th_spring.domain;
 import com.example.likelion13th_spring.domain.Mapping.ProductOrders;
 import com.example.likelion13th_spring.enums.DeliverStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,13 +22,26 @@ public class Orders extends BaseTimeEntity {//BaseTimeEntity를 상속하면서 
     @Enumerated(EnumType.STRING)
     private DeliverStatus deliverStatus; // 배송상태
 
+    @Column(nullable = false)
+    private Integer quantity; // 상품 정보
+
     @ManyToOne
     @JoinColumn(name = "buyer_id") // 연관관계의 주인
     private Member buyer;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL) // 영속성 전이
     private List<ProductOrders> productOrders;
 
     @OneToOne(mappedBy = "orders", cascade = CascadeType.ALL) // 영속성 전이
     private Coupon coupon;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "shipping_address_id", nullable = false)
+    private ShippingAddress shippingAddress;
+
+
 }

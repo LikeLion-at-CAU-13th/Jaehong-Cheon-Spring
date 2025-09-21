@@ -65,7 +65,7 @@ public class ProductService {
         }
 
         // 상품 수정
-        product.update(dto.getName(), dto.getPrice(), dto.getStock(), dto.getDescription());
+        product.productUpdate(dto.getName(), dto.getPrice(), dto.getStock(), dto.getDescription());
 
         return ProductResponseDto.fromEntity(product);
     }
