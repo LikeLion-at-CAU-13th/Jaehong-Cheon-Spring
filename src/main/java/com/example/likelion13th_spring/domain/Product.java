@@ -28,7 +28,6 @@ public class Product extends BaseTimeEntity { //BaseTimeEntity를 상속하면�
     @Column(nullable = false)
     private String description; // 상품 정보
 
-    //판매
     @ManyToOne
     @JoinColumn(name = "seller_id") // 연관관계의 주인!!
     private Member seller;
@@ -40,12 +39,12 @@ public class Product extends BaseTimeEntity { //BaseTimeEntity를 상속하면�
         this.stock -= amount;
     }
 
+
     public void productUpdate(String name, Integer price, Integer stock, String description) {
         this.name = name;
         this.price = price;
         this.stock = stock;
         this.description = description;
     }
-
 
 }
