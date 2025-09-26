@@ -31,7 +31,10 @@ public class Member {
     private Integer deposit;
 
     @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
-    private Set<Product> products = new HashSet<>();
+    private Set<Product> sellingProduct = new HashSet<>();
+
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
+    private Set<Orders> buyingOrders = new HashSet<>();
 
     public void chargeDeposit(int money){
         this.deposit += money;
@@ -52,5 +55,11 @@ public class Member {
         this.isAdmin = isAdmin;
         this.deposit = deposit;
         this.age = age;
+
+
+    }
+    public boolean isSeller() {
+        return Role.SELLER.equals(this.role);
+    }
     }
 }
