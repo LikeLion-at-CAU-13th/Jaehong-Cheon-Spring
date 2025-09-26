@@ -57,11 +57,10 @@ public class Member {
         this.age = age;
         this.password = password;
 
+
     }
     public boolean isSeller() {
         return Role.SELLER.equals(this.role);
     }
-    public boolean isBuyer() {
-        return Role.BUYER.equals(this.role);
     }
 }
