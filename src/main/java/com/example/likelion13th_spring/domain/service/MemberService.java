@@ -32,6 +32,4 @@ public class MemberService {
         return memberRepository.findByNameStartingWith("us", pageable);
     }
 
-
-    
 }
