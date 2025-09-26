@@ -52,6 +52,5 @@ public class Member {
         this.isAdmin = isAdmin;
         this.deposit = deposit;
         this.age = age;
-
     }
 }
