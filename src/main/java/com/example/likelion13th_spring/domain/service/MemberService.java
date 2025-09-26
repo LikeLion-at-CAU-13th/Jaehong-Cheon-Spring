@@ -34,6 +34,7 @@ public class MemberService {
         return memberRepository.findByNameStartingWith("us", pageable);
     }
 
+
     public void join(JoinRequestDto joinRequestDto) {
         // 해당 이름이 이미 존재하는 경우
         if (memberRepository.existsByName(joinRequestDto.getName())){
@@ -46,9 +47,5 @@ public class MemberService {
         // 유저 정보 저장
         memberRepository.save(member);
     }
-
-
-
-
 
 }
