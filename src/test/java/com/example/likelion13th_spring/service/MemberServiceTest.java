@@ -73,6 +73,4 @@ public class MemberServiceTest {
         assertThat(result.getTotalElements()).isEqualTo(30); // us로 시작하는 사람 수 30명
     }
 
-
-
 }
