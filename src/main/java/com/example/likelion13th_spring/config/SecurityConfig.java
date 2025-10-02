@@ -1,5 +1,6 @@
 package com.example.likelion13th_spring.config;
 
+import com.example.likelion13th_spring.domain.service.CustomOAuth2UserService;
 import com.example.likelion13th_spring.domain.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,8 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final CustomUserDetailsService customUserDetailsService;
+    private final CustomOAuth2UserService customOAuth2UserService;
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -28,8 +31,18 @@ public class SecurityConfig {
                 .cors((SecurityConfig::corsAllow)) // CORS 설정
                 .csrf(AbstractHttpConfigurer::disable) // 비활성화
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/join", "/login").permitAll() // 회원가입, 로그인은 모두 허용
-                        .requestMatchers("/**").authenticated()) // 나머지는 인증된 사용자만 허용
+
+                    .requestMatchers("/join", "/login",
+                            "/oauth2/**", "/login/oauth2/**",
+                            "/h2-console/**", "/error").permitAll()
+                    .anyRequest().authenticated())
+                    .oauth2Login(oauth -> oauth
+                            .userInfoEndpoint(userInfo -> userInfo
+                                    .userService(customOAuth2UserService)
+                            )
+                    )
+                        //.requestMatchers("/join", "/login").permitAll() // 회원가입, 로그인은 모두 허용
+                        //.requestMatchers("/**").authenticated()) // 나머지는 인증된 사용자만 허용
 //                .formLogin(Customizer.withDefault())
 //                .logout(Customizer.withDefault())
                 .userDetailsService(customUserDetailsService)
