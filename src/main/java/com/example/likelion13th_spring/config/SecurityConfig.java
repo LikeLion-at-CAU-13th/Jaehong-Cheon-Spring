@@ -23,6 +23,7 @@ public class SecurityConfig {
     private final CustomUserDetailsService customUserDetailsService;
     private final CustomOAuth2UserService customOAuth2UserService;
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // 설정 추가
@@ -30,6 +31,7 @@ public class SecurityConfig {
                 .cors((SecurityConfig::corsAllow)) // CORS 설정
                 .csrf(AbstractHttpConfigurer::disable) // 비활성화
                 .authorizeHttpRequests((auth) -> auth
+
                     .requestMatchers("/join", "/login",
                             "/oauth2/**", "/login/oauth2/**",
                             "/h2-console/**", "/error").permitAll()
