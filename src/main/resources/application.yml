@@ -19,16 +19,7 @@ spring:
       mode: always # 애플리케이션 시작 시 스크립트 초기화 (기본값: embedded)
   config:
     import: optional:application-secret.yml
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: GOOGLE_CLIENT_ID
-            client-secret: GOOGLE_CLIENT_SECRET
-            scope:
-              - email
-              - profile
-            redirect-uri: "http://localhost:8080/login/oauth2/code/google"
+
+
 jwt:
-  secret: {E6n3znBWQHGs8mo6IWp/ys20gIeVj5TfLYl0Gl393i3R2+cKzpCvRddOZwYJcQtSwEzv3+pK0k+uFkSCE4oJXb2IyURCb+gNd7lj+S2EJtCexw0izO7y5SIFYiX4IjAsUiINjrw1zl4xTPo4iJUMdHdk5DtDQikW0bC5DdLW4/KqpqP9VHLlSX/HbD52+iBZDLcbzWjJo4UhnSyrit8z9Li2HLb94wtO58WGKTpeANOy9G4qxSVNk+qGTozu8+ISsMFZrza1kOsNBcBsU9Op3ZbmVqIP8rTpSet7s/AAPSqPppjpuDPtgarOrcGbz6Qy45ixwFjOs2/g0eWB5189DA==}
+  secret: E6n3znBWQHGs8mo6IWp/ys20gIeVj5TfLYl0Gl393i3R2+cKzpCvRddOZwYJcQtSwEzv3+pK0k+uFkSCE4oJXb2IyURCb+gNd7lj+S2EJtCexw0izO7y5SIFYiX4IjAsUiINjrw1zl4xTPo4iJUMdHdk5DtDQikW0bC5DdLW4/KqpqP9VHLlSX/HbD52+iBZDLcbzWjJo4UhnSyrit8z9Li2HLb94wtO58WGKTpeANOy9G4qxSVNk+qGTozu8+ISsMFZrza1kOsNBcBsU9Op3ZbmVqIP8rTpSet7s/AAPSqPppjpuDPtgarOrcGbz6Qy45ixwFjOs2/g0eWB5189DA==
