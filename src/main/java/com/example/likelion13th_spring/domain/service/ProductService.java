@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,6 +39,19 @@ public class ProductService {
     // 모든 상품 가져오기
     public List<ProductResponseDto> getAllProducts() {
         return productRepository.findAll().stream()
+                .map(ProductResponseDto::fromEntity)
+                .toList();
+    }
+
+    // 내가 등록한 상품 가져오기
+    public List<ProductResponseDto> getMyProducts(String name) {
+
+        Member seller = memberRepository.findByName(name)
+                .orElseThrow(() -> new RuntimeException("해당 판매자를 찾을 수 없습니다."));
+
+        List<Product> products = productRepository.findBySeller(seller);
+
+        return products.stream()
                 .map(ProductResponseDto::fromEntity)
                 .toList();
     }
