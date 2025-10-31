@@ -8,6 +8,8 @@ import com.example.likelion13th_spring.dto.response.ProductResponseDto;
 import com.example.likelion13th_spring.domain.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,7 +34,11 @@ public class ProductController {
 
     @GetMapping("/my")
     public ResponseEntity<List<ProductResponseDto>> getMyProducts() {
+        // 인증된 사용자 이름 가져오기
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
 
+        return ResponseEntity.ok(productService.getMyProducts(name));
     }
 
     // 특정 상품 조회
