@@ -19,3 +19,7 @@ spring:
       mode: always # 애플리케이션 시작 시 스크립트 초기화 (기본값: embedded)
   config:
     import: optional:application-secret.yml
+
+
+jwt:
+  secret: ${JWT_SECRET}
